@@ -1,0 +1,45 @@
+{% include 'header.html' %}
+
+<body class="text-center">
+
+<main class="form-signin w-100 m-auto">
+    <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+        <ul class="nav navbar-nav active"><li class="nav-item active"><a class="nav-link" href="/view">List Product</a></li></ul>
+        <ul class="nav navbar-nav active"><li class="nav-item"><a class="nav-link" href="/add">Add Product</a></li></ul>
+        <ul class="nav navbar-nav active"><li class="nav-item"><a class="nav-link" href="/update">Edit Product</a></li></ul>
+        <ul class="nav navbar-nav active"><li class="nav-item"><a class="nav-link" href="/delete">Delete Product</a></li></ul>
+    </nav>
+    <br>
+<h1 class="h3 mb-3 fw-normal">Product Information</h1> 
+
+<table class="table">
+
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Category</th>
+      <th scope="col">Image</th>
+    </tr>
+    </thead>
+
+
+    <tbody>  
+    {% for row in rows %}
+    <tr>
+    <th scope="row">{{row["id"]}}</th>
+        <td>{{row["name"]}}</td>  
+        <td>{{row["price"]}}</td>  
+        <td>{{row["quantity"]}}</td>  
+        <td>{{row["category"]}}</td>
+        <td><img src='data:image/;base64,{{row["image"]}}' class="img-thumbnail"></td></tr>
+    {% endfor %}  
+    </tbody>
+</table>
+</main>
+
+
+</body>
+{% include 'footer.html' %}
