@@ -1,0 +1,34 @@
+
+
+{% extends "layout.html" %}
+{% block body %}
+
+    {% if session['username'] %}
+
+    <div class="container">
+
+    <form action = "/deleterecord" method="post" class="form-signin">
+    <h1 class="form-signin-heading">Delete Product</h1>
+    <h5>Delete your product by ID</h5>
+    <input type="text" name="id" class="form-control">
+    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+
+    </div> <!-- /container -->
+    
+    {% else %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome,</h1>
+        <p>To use this service, you must login first</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}" role="button">Login</a>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('join') }}" role="button">Register</a>
+        </p>
+      </div>
+    </div> <!-- /container -->
+    {% endif %}
+
+{% endblock %}

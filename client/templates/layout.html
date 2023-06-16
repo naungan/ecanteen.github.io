@@ -1,0 +1,88 @@
+<!doctype html>
+<title>EInventory</title>
+<head>
+<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+<link href="static/css/signin.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="static/css/navbar-fixed-top.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="static/css/navbar.css" rel="stylesheet">
+
+<script src="static/js/bootstrap.js"></script>
+
+
+<div class="container">
+			<!-- Static navbar -->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+
+						<a class="navbar-brand" href="/">ECINVEN-WS</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+
+							{% if session['username'] %}
+							<li class="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                	<li><a href="{{ url_for('view') }}">Your Products</a></li>
+                  <li><a href="{{ url_for('add') }}">Add New Product</a></li>
+                </ul>
+              </li>
+              {% endif %}
+
+              <li><a href="{{ url_for('guide') }}">Guide</a></li>
+						</ul>
+
+
+						<ul class="nav navbar-nav navbar-right">
+							{% if not session['username'] %}
+							<li><a href="{{ url_for('login') }}">Login</a></li>
+							<li><a href="{{ url_for('join') }}">Register</a></li>
+							{% endif %}
+
+							{% if session['username'] %}
+
+							<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                	<img src="static/ui/user-0.png" height="20px">   {{ session['username'] }}
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                	<li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+							{% endif %}
+
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div><!--/.container-fluid -->
+			</nav>
+</div>
+
+	{% for message in get_flashed_messages() %}
+		<div class=flash>{{ message }}</div>
+	{% endfor %}
+	{% block body %}{% endblock %}
+
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="static/js/vendor/jquery.min.js"><\/script>')</script>
+		<script src="static/js/bootstrap.min.js"></script>
+
+</head>

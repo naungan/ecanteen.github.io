@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    {% if session['username'] %}
+
+    <div class="container">
+
+    <form enctype="multipart/form-data" action = "/add" method="post" class="form-signin">
+    <h1 class="form-signin-heading">Adding New Product</h1>
+    <input type="text" name="name" class="form-control" id="floatingInput" placeholder="ProductName">
+    <input type="textarea" name="desc" class="form-control" id="floatingInput" placeholder="Description">
+    <input type="number" name="price" class="form-control" id="floatingInput" placeholder="Price">
+    <input type="number" name="quantity" class="form-control" id="floatingInput" placeholder="Quantity">
+    Category
+        <input type="radio" name="category" value="makanan"><label>Makanan</label>
+        <input type="radio" name="category" value="minuman"><label>Minuman</label>
+    <input type="file" name="image" class="form-control">
+    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+
+    </div> <!-- /container -->
+    
+    {% else %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome,</h1>
+        <p>To use this service, you must login first</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}" role="button">Login</a>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('join') }}" role="button">Register</a>
+        </p>
+      </div>
+    </div> <!-- /container -->
+    {% endif %}
+
+{% endblock %}

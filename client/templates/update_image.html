@@ -1,0 +1,40 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+    {% if session['username'] %}
+
+    <div class="container">
+
+    <form enctype="multipart/form-data" action = "/updateimage" method="post" class="form-signin">
+    <h3>Updating {{prodname}}</h3>
+    <input type="hidden" value="{{prodid}}" name="id">
+    <input type="hidden" value="{{userid}}" name="user_id">
+
+    <div><br><p>Previous Image :</p>
+        <img src='data:image/;base64,{{previmg}}' width="200px">
+    </div>
+
+    <br><p>Upload New Image :</p>
+    <input type="file" name="image" class="form-control">
+    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">Save</button>
+    </form>
+
+    </div> <!-- /container -->
+    
+    {% else %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome,</h1>
+        <p>To use this service, you must login first</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}" role="button">Login</a>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('join') }}" role="button">Register</a>
+        </p>
+      </div>
+    </div> <!-- /container -->
+    {% endif %}
+
+{% endblock %}

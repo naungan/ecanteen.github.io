@@ -1,0 +1,43 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+    {% if session['username'] %}
+
+    <div class="container">
+
+    <form enctype="multipart/form-data" action = "/updaterecord" method="post" class="form-signin">
+    <h1 class="form-signin-heading">Edit Product</h1>
+    <h5>Editing Selected Product</h5>
+    <input type="text" name="name" value="{{prodname}}" class="form-control" id="floatingInput" placeholder="ProductName" required>
+    <input type="textarea" name="desc" value="{{proddesc}}" class="form-control" id="floatingInput" placeholder="Description" required>
+    <input type="number" name="price" value="{{prodprice}}" class="form-control" id="floatingInput" placeholder="Price" required>
+    <input type="number" name="quantity" value="{{prodquan}}" class="form-control" id="floatingInput" placeholder="Quantity" required>
+    Category
+        <input type="radio" name="category" value="makanan" required=""><label>Makanan</label>
+        <input type="radio" name="category" value="minuman"><label>Minuman</label>
+
+    <input type="hidden" value="{{prodid}}" name="id">
+    <input type="hidden" value="{{userid}}" name="user_id">
+
+    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">Save</button>
+    </form>
+
+    </div> <!-- /container -->
+    
+    {% else %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome,</h1>
+        <p>To use this service, you must login first</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}" role="button">Login</a>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('join') }}" role="button">Register</a>
+        </p>
+      </div>
+    </div> <!-- /container -->
+    {% endif %}
+
+{% endblock %}

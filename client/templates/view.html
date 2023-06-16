@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session['username'] %}
+
+<div class="container">
+<div class="jumbotron">
+<h2 class="sub-header">Your Product</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Category</th>
+                <th scope="col">Image</th>
+                <th scope="col"></th>
+
+              </tr>
+              </thead>
+
+              <tbody>  
+              {% for row in rows %}
+              <tr>
+              <th scope="row">{{row["id"]}}</th>
+                  <td>{{row["name"]}}</a>
+                  </td> 
+                  <td>{{row["price"]}}</td>  
+                  <td>{{row["quantity"]}}</td>
+                  <td>{{row["category"]}}</td>
+                  <td>
+
+                    <form enctype="multipart/form-data" action="{{url_for('chimg')}}" method=post>
+                      <input type="hidden" value="{{row['name']}}" name="name">
+                      <input type="hidden" value="{{row['id']}}" name="id">
+                      <input type="hidden" value="{{row['desc']}}" name="desc">
+                      <input type="hidden" value="{{row['user_id']}}" name="user_id">
+                      <input type="hidden" value="{{row['image']}}" name="image">
+                      <button type="submit">
+                        <img src='data:image/;base64,{{row["image"]}}' width="90px">
+                      </button>
+                    </form>
+
+
+                    
+                  </td>                
+                  
+                  <td>
+
+                    <form action="{{url_for('update')}}" method=post>
+                      <input type="hidden" value="{{row['id']}}" name="id">
+                      <input type="hidden" value="{{row['name']}}" name="name">
+                      <input type="hidden" value="{{row['desc']}}" name="desc">
+                      <input type="hidden" value="{{row['price']}}" name="price">
+                      <input type="hidden" value="{{row['quantity']}}" name="quantity">
+                      <input type="hidden" value="{{row['category']}}" name="category">
+                      <input type="hidden" value="{{row['user_id']}}" name="user_id">
+                      <button type="submit" class="btn btn-info">Edit</button>
+                    </form>
+
+
+                    <form action="{{url_for('deleterecord')}}" method=post>
+                      <input type="hidden" value="{{row['id']}}" name="id">
+                      <input type="hidden" value="{{row['user_id']}}" name="user_id">
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+                    
+                  </td>
+
+                </tr>
+
+              {% endfor %}  
+              </tbody></table>
+</div>
+</div>
+{% else %}
+
+<div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome,</h1>
+        <p>To use this service, you must login first</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}" role="button">Login</a>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('join') }}" role="button">Register</a>
+        </p>
+      </div>
+    </div> <!-- /container -->
+    {% endif %}
+
+
+{% endblock %}

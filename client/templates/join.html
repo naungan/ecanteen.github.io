@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if not session['username'] %}
+
+<div class="container">
+  <div class="jumbotron">
+
+      <form  class="form-signin" method="post" action = "/join">
+        <h2 class="form-signin-heading">Register</h2>
+        
+        <label for="username" class="sr-only">Username</label>
+        <input type="username" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+    </div>
+    </div> <!-- /container -->
+
+{% else %}
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Hello {{ session['username'] }}</h1>
+        <p>Have a nice day,</p>
+      </div>
+    </div> <!-- /container -->
+
+{% endif %}
+
+{% endblock %}

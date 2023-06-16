@@ -1,0 +1,37 @@
+
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Guide</h1>
+        <h2>How to use this service?</h2>
+        <p>In order to be able for using this service, you should join as the member, then you will be able to store your product, modify, or delete.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}" role="button">Login</a>
+          <a class="btn btn-lg btn-primary" href="{{ url_for('join') }}" role="button">Register</a>
+        </p>
+
+        <br>
+        <h2>Managing Your Product</h2>
+        <h3>Your Product</h3>
+        
+
+         <br>
+        <h3>Adding New Product</h3>
+
+         <br>
+        <h3>Edit Existing Product</h3>
+
+         <br>
+        <h3>Delete Product</h3>
+
+
+      </div>
+    </div> <!-- /container -->
+
+
+
+{% endblock %}
